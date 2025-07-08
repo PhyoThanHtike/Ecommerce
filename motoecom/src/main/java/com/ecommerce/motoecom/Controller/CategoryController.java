@@ -18,8 +18,8 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/echo")
-    public ResponseEntity<String> echoMessage(@RequestParam(name = "message", defaultValue = "HI") String  message){
+    @GetMapping("/api/echo")
+    public ResponseEntity<String> echoMessage(@RequestParam(name = "message", defaultValue = "FUCK") String  message){
         return new ResponseEntity<>("Echoed Message: " + message, HttpStatus.OK);
     }
 

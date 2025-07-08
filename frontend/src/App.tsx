@@ -3,19 +3,19 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Products from "./pages/Products";
+import Products from "./components/products/Products";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
 import About from "./pages/About";
 import Footer from "./layout/Footer";
 import Navbar from "./layout/Navbar";
-import Login from "./pages/Login";
+import Login from "./components/auth/Login";
 
 function App() {
   return (
     <>
       <Router>
-        <Navbar/>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
@@ -23,9 +23,9 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/about" element={<About />} />
 
-          <Route path="/login" element={<Login/>}/>
+          <Route path="/login" element={<Login />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </Router>
     </>
   );

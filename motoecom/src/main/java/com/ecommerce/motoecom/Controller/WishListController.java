@@ -9,10 +9,7 @@ import com.ecommerce.motoecom.util.AuthUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -27,13 +24,14 @@ public class WishListController {
     @Autowired
     WishListService wishListService;
 
-    @PostMapping("/wishlist/{productI}")
-    public ResponseEntity<WishListDTO> addToWishList(@PathVariable String productId){
+    @PostMapping("/wishlist/{productId}")
+    public ResponseEntity<WishListDTO> addToWishList(@PathVariable Long productId){
 
         WishListDTO wishlistDTO = wishListService.addToWishList(productId);
         return new ResponseEntity<WishListDTO>(wishlistDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/wishlist")
     public ResponseEntity<WishListDTO> getWishList(){
 
         String emailId = authUtil.loggedInEmail();
@@ -42,5 +40,11 @@ public class WishListController {
         WishListDTO wishListDTO = wishListService.getWishList(emailId, wishlistId);
 
         return new ResponseEntity<>(wishListDTO, HttpStatus.OK);
+    }
+
+    @PutMapping("/wishlist/delete/{productId}/{wishListId}")
+    public ResponseEntity<WishListDTO> removeWishlistItems(@PathVariable Long productId, @PathVariable Long wishListId){
+        WishListDTO wishListDTO = wishListService.removeProduct(productId, wishListId);
+        return new ResponseEntity<WishListDTO>(wishListDTO, HttpStatus.OK);
     }
 }
